@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <input type="text" size="40" placeholder="username" id="username"><br>
+    <input type="password" size="40" placeholder="password" id="password"><br>
+    <input type="button" value="submit" id="submit">
+
+    <script>
+        $(document).ready(function(){
+            var username, password;
+            $('#submit').on('click', ()=>{
+                username =$('#username').val();
+                password =$('#password').val();
+                $.post('/login', {
+                    username: username,
+                    password: password
+                }, function(data){
+                    if(data === 'done')
+                    {
+                        window.location.href = '/logged'
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>
